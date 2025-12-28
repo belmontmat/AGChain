@@ -1,0 +1,31 @@
+'use client';
+
+export default function Navigation({ selectedView, onViewChange }) {
+  const views = [
+    { id: 'education', label: 'Education' },
+    { id: 'live-demo', label: 'Live Demo' },
+    { id: 'voting-explorer', label: 'Voting & Blockchain' },
+    { id: 'faq', label: 'FAQ' }
+  ];
+
+  return (
+    <div className="flex gap-3 mb-8 justify-center flex-wrap">
+      {views.map(view => (
+        <button
+          key={view.id}
+          onClick={() => onViewChange(view.id)}
+          className={`
+            px-5 py-2.5 rounded-md font-semibold text-xs uppercase tracking-wider
+            transition-all duration-300 border
+            ${selectedView === view.id
+              ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500'
+              : 'bg-slate-800/50 text-slate-400 border-blue-500/20 hover:border-blue-500/50'
+            }
+          `}
+        >
+          {view.label}
+        </button>
+      ))}
+    </div>
+  );
+}
