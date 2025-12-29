@@ -23,24 +23,25 @@ export default function EducationView() {
   return (
     <div>
       {/* Section Navigation */}
-      <div className="flex gap-3 mb-8 flex-wrap justify-center">
+      <nav className="flex gap-3 mb-8 flex-wrap justify-center" aria-label="Education sections">
         {SECTIONS.map(section => (
           <button
             key={section.id}
             onClick={() => setEducationSection(section.id)}
+            aria-current={educationSection === section.id ? 'page' : undefined}
             className={`
               px-4 py-2 rounded-md text-[11px] font-medium
               transition-all duration-300
               ${educationSection === section.id
                 ? 'bg-violet-500/30 border border-violet-500 text-violet-300'
-                : 'bg-slate-800/30 border border-violet-500/20 text-slate-500 hover:text-violet-300 hover:border-violet-500/40'
+                : 'bg-slate-800/30 border border-violet-500/20 text-slate-500 hover:text-violet-300 hover:border-violet-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500'
               }
             `}
           >
             {section.label}
           </button>
         ))}
-      </div>
+      </nav>
 
       {/* Active Section Content */}
       {ActiveComponent && <ActiveComponent />}

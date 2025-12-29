@@ -74,6 +74,7 @@ export default function SimulationControls() {
         {/* Auto-Simulate Toggle */}
         <div className="mb-6">
           <label
+            htmlFor="auto-simulate-checkbox"
             className={`flex items-center gap-3 text-sm p-3 rounded-md border transition-all cursor-pointer ${
               autoSimulate
                 ? 'bg-purple-500/20 border-purple-500/50'
@@ -81,17 +82,20 @@ export default function SimulationControls() {
             } ${election ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <input
+              id="auto-simulate-checkbox"
               type="checkbox"
               checked={autoSimulate}
               onChange={(e) => setAutoSimulate(e.target.checked)}
               disabled={!!election}
+              aria-label="Auto-simulate metrics"
+              aria-describedby="auto-simulate-description"
               className="w-4.5 h-4.5 cursor-pointer disabled:cursor-not-allowed"
             />
             <div>
               <div className={`font-semibold ${autoSimulate ? 'text-purple-300' : 'text-slate-200'}`}>
                 Auto-Simulate Metrics
               </div>
-              <div className="text-xs text-slate-400 mt-1">
+              <div id="auto-simulate-description" className="text-xs text-slate-400 mt-1">
                 {election ? 'Disabled during active elections' : 'Metrics update automatically'}
               </div>
             </div>
@@ -101,19 +105,22 @@ export default function SimulationControls() {
         {/* Speed Control */}
         {autoSimulate && (
           <div className="mb-6">
-            <div className="text-xs text-slate-400 mb-2 font-semibold">
+            <label htmlFor="simulation-speed-slider" className="text-xs text-slate-400 mb-2 font-semibold block">
               Update Speed
-            </div>
+            </label>
             <input
+              id="simulation-speed-slider"
               type="range"
               min="500"
               max="3000"
               step="100"
               value={simulationSpeed}
               onChange={(e) => setSimulationSpeed(Number(e.target.value))}
+              aria-label="Simulation update speed"
+              aria-valuetext={`${simulationSpeed < 1000 ? 'Fast' : simulationSpeed < 2000 ? 'Medium' : 'Slow'} (${simulationSpeed} milliseconds)`}
               className="w-full accent-purple-500"
             />
-            <div className="text-xs text-purple-500 text-center mt-2">
+            <div className="text-xs text-purple-500 text-center mt-2" aria-live="polite">
               {simulationSpeed < 1000 ? 'Fast' : simulationSpeed < 2000 ? 'Medium' : 'Slow'} ({simulationSpeed}ms)
             </div>
           </div>
@@ -162,7 +169,7 @@ export default function SimulationControls() {
               }}
             >
               📚 Cut Education Budget<br/>
-              <span style={{ fontSize: '9px', opacity: 0.8 }}>+GDP, -Education, -Approval</span>
+              <span className="text-[9px] opacity-80">+GDP, -Education, -Approval</span>
             </button>
 
             {/* Relax Environmental Rules */}
@@ -199,7 +206,7 @@ export default function SimulationControls() {
               }}
             >
               🏭 Relax Environmental Rules<br/>
-              <span style={{ fontSize: '9px', opacity: 0.8 }}>+GDP, -Infrastructure, -Approval</span>
+              <span className="text-[9px] opacity-80">+GDP, -Infrastructure, -Approval</span>
             </button>
 
             {/* Create Jobs Program */}
@@ -235,7 +242,7 @@ export default function SimulationControls() {
               }}
             >
               👷 Launch Jobs Program<br/>
-              <span style={{ fontSize: '9px', opacity: 0.8 }}>-GDP, --Unemployment, +Approval</span>
+              <span className="text-[9px] opacity-80">-GDP, --Unemployment, +Approval</span>
             </button>
 
             {/* Invest in Infrastructure */}
@@ -272,7 +279,7 @@ export default function SimulationControls() {
               }}
             >
               🏗️ Invest in Infrastructure<br/>
-              <span style={{ fontSize: '9px', opacity: 0.8 }}>-GDP, +Infrastructure, +Approval</span>
+              <span className="text-[9px] opacity-80">-GDP, +Infrastructure, +Approval</span>
             </button>
           </div>
         </div>

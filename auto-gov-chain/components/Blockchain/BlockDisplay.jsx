@@ -64,33 +64,36 @@ function TransactionDetails({ tx }) {
 
 export default function BlockDisplay({ block }) {
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg p-4 hover:border-blue-500/50 transition-colors">
-      <div className="flex justify-between items-start mb-3">
-        <div className="text-sm font-bold text-blue-500">
+    <article className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg p-4 hover:border-blue-500/50 transition-colors">
+      <header className="flex justify-between items-start mb-3">
+        <h3 className="text-sm font-bold text-blue-500">
           Block #{block.index}
-        </div>
-        <div className="text-xs text-slate-400">
+        </h3>
+        <time dateTime={new Date(block.timestamp).toISOString()} className="text-xs text-slate-400">
           {new Date(block.timestamp).toLocaleTimeString()}
-        </div>
-      </div>
+        </time>
+      </header>
 
-      <div className="text-xs text-slate-500 mb-2 break-all font-mono">
-        Hash: {block.hash.substring(0, 24)}...
-      </div>
+      <dl className="text-xs mb-2">
+        <dt className="sr-only">Block Hash</dt>
+        <dd className="text-slate-500 break-all font-mono">
+          Hash: {block.hash.substring(0, 24)}...
+        </dd>
+      </dl>
 
-      <div className="border-t border-blue-500/20 pt-3 space-y-2">
+      <section className="border-t border-blue-500/20 pt-3 space-y-2" aria-label="Block transactions">
         {block.transactions.map((tx, j) => (
           <div
             key={j}
             className="p-2 bg-black/30 rounded"
           >
-            <div className="text-xs font-semibold text-purple-400 mb-1.5 uppercase tracking-wide">
+            <h4 className="text-xs font-semibold text-purple-400 mb-1.5 uppercase tracking-wide">
               {tx.type.replace(/_/g, ' ')}
-            </div>
+            </h4>
             <TransactionDetails tx={tx} />
           </div>
         ))}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }

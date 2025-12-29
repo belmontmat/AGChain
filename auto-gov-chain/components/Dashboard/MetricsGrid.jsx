@@ -32,7 +32,7 @@ export default function MetricsGrid() {
           title="GDP Index"
           value={metrics.gdp?.toFixed(1)}
           icon={TrendingUp}
-          color={metrics.gdp >= 95 ? '#22c55e' : metrics.gdp < 90 ? '#ef4444' : '#f59e0b'}
+          colorClass={metrics.gdp >= 95 ? 'text-green-500' : metrics.gdp < 90 ? 'text-red-500' : 'text-amber-500'}
           statusText={metrics.gdp < 90 ? 'CRITICAL: Decline Trigger Active' : 'Baseline: 100'}
           showTrend={true}
           isGoodTrend={metrics.gdp >= 95}
@@ -48,12 +48,12 @@ export default function MetricsGrid() {
           title="Education Ranking"
           value={`#${metrics.educationRanking}`}
           icon={FileText}
-          color={
+          colorClass={
             metrics.educationRanking <= 15
-              ? '#22c55e'
+              ? 'text-green-500'
               : metrics.educationRanking > 25
-              ? '#f59e0b'
-              : '#3b82f6'
+              ? 'text-amber-500'
+              : 'text-blue-500'
           }
           statusText={metrics.educationRanking > 25 ? 'WARNING: Declining' : 'Target: Top 15'}
           baseline={
@@ -70,12 +70,12 @@ export default function MetricsGrid() {
           title="Approval Rating"
           value={`${metrics.approvalRating?.toFixed(1)}%`}
           icon={Users}
-          color={
+          colorClass={
             metrics.approvalRating >= 50
-              ? '#22c55e'
+              ? 'text-green-500'
               : metrics.approvalRating < 35
-              ? '#ef4444'
-              : '#f59e0b'
+              ? 'text-red-500'
+              : 'text-amber-500'
           }
           statusText={
             metrics.approvalRating < 35 ? 'CRITICAL: Election Trigger Active' : 'Threshold: 35%'
@@ -94,12 +94,12 @@ export default function MetricsGrid() {
           title="Unemployment Rate"
           value={`${metrics.unemploymentRate?.toFixed(1)}%`}
           icon={Activity}
-          color={
+          colorClass={
             metrics.unemploymentRate <= 5
-              ? '#22c55e'
+              ? 'text-green-500'
               : metrics.unemploymentRate > 7.5
-              ? '#f59e0b'
-              : '#3b82f6'
+              ? 'text-amber-500'
+              : 'text-blue-500'
           }
           statusText={metrics.unemploymentRate > 7.5 ? 'WARNING: Above Target' : 'Target: < 5%'}
           baseline={
@@ -116,12 +116,12 @@ export default function MetricsGrid() {
           title="Infrastructure Score"
           value={metrics.infrastructureScore?.toFixed(1)}
           icon={Award}
-          color={
+          colorClass={
             metrics.infrastructureScore >= 80
-              ? '#22c55e'
+              ? 'text-green-500'
               : metrics.infrastructureScore < 65
-              ? '#ef4444'
-              : '#f59e0b'
+              ? 'text-red-500'
+              : 'text-amber-500'
           }
           statusText={
             metrics.infrastructureScore < 65

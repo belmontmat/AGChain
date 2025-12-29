@@ -385,20 +385,26 @@ const FAQView = () => {
             >
               <button
                 onClick={() => toggleSection(item.id)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-700/30 transition-colors"
+                aria-expanded={openSection === item.id}
+                aria-controls={`faq-answer-${item.id}`}
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-700/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 <span className="text-base font-bold text-slate-200 pr-4">
                   {item.question}
                 </span>
                 {openSection === item.id ? (
-                  <ChevronUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                  <ChevronUp className="w-5 h-5 text-slate-400 flex-shrink-0" aria-hidden="true" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" aria-hidden="true" />
                 )}
               </button>
 
               {openSection === item.id && (
-                <div className="px-6 py-4 border-t border-slate-700 bg-slate-900/30">
+                <div
+                  id={`faq-answer-${item.id}`}
+                  role="region"
+                  className="px-6 py-4 border-t border-slate-700 bg-slate-900/30"
+                >
                   <div className="text-sm text-slate-400 leading-relaxed">
                     {item.answer}
                   </div>

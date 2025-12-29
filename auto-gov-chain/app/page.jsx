@@ -30,19 +30,19 @@ function AppContent() {
       {/* Animated background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse [animation-delay:1s]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
         <Header />
         <Navigation selectedView={selectedView} onViewChange={setSelectedView} />
 
-        <div className="mt-8">
+        <main id="main-content" className="mt-8">
           {selectedView === 'education' && <EducationView />}
           {selectedView === 'live-demo' && <DashboardView />}
           {selectedView === 'voting-explorer' && <VotingExplorerView />}
           {selectedView === 'faq' && <FAQView />}
-        </div>
+        </main>
       </div>
     </div>
   );

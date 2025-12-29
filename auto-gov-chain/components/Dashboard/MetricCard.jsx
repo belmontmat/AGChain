@@ -7,7 +7,7 @@ export default function MetricDisplayCard({
   title,
   value,
   icon: Icon,
-  color,
+  colorClass,
   statusText,
   baseline,
   showTrend = false,
@@ -19,7 +19,7 @@ export default function MetricDisplayCard({
         <div className="text-xs text-slate-400 uppercase tracking-wider">
           {title}
         </div>
-        <Icon size={18} style={{ color }} />
+        <Icon size={18} className={colorClass} />
       </div>
 
       <div className="text-3xl font-bold mb-2">
@@ -27,10 +27,7 @@ export default function MetricDisplayCard({
       </div>
 
       {statusText && (
-        <div
-          className="text-xs flex items-center gap-1 mb-1.5"
-          style={{ color }}
-        >
+        <div className={`text-xs flex items-center gap-1 mb-1.5 ${colorClass}`}>
           {showTrend && (
             isGoodTrend ? <TrendingUp size={14} /> : <TrendingDown size={14} />
           )}

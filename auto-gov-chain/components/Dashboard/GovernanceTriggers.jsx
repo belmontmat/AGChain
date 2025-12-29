@@ -20,14 +20,11 @@ export default function GovernanceTriggers() {
       <div className="flex flex-col gap-3">
         {triggers.map((trigger, i) => {
           const isCritical = trigger.severity === 'critical' || trigger.severity === 'mandatory';
-          const borderColor = isCritical ? '#ef4444' : '#f59e0b';
-          const bgColor = isCritical ? 'rgba(239, 68, 68, 0.2)' : 'rgba(245, 158, 11, 0.2)';
-          const textColor = isCritical ? '#ef4444' : '#f59e0b';
 
           return (
             <MetricCard
               key={i}
-              style={{ borderLeft: `3px solid ${borderColor}` }}
+              className={isCritical ? 'border-l-[3px] border-l-red-500' : 'border-l-[3px] border-l-amber-500'}
             >
               <div className="flex justify-between items-center">
                 <div>
@@ -46,12 +43,11 @@ export default function GovernanceTriggers() {
                   ) : null}
                 </div>
                 <div
-                  className="px-3 py-1.5 rounded text-xs font-semibold border uppercase tracking-wider"
-                  style={{
-                    background: bgColor,
-                    color: textColor,
-                    borderColor: borderColor.replace(')', ', 0.3)')
-                  }}
+                  className={`px-3 py-1.5 rounded text-xs font-semibold border uppercase tracking-wider ${
+                    isCritical
+                      ? 'bg-red-500/20 text-red-500 border-red-500/30'
+                      : 'bg-amber-500/20 text-amber-500 border-amber-500/30'
+                  }`}
                 >
                   {trigger.severity}
                 </div>
